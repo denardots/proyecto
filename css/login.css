@@ -1,0 +1,74 @@
+:root{
+    --color-fondo: #80868A4D;
+    --color-mensaje: #FF0000;
+}
+*{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+}
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/fondo.webp);
+    background-size: cover;
+}
+.login-form{
+    padding: 5vh;
+    background-color: var(--color-fondo);
+}
+.login-form__title{
+    margin-top: 0;
+    font-size: 40px;
+    font-weight: 700;
+}
+.login-form__input, .login-form__button{
+    display: block;
+    width: 93%;
+    margin: auto;
+    margin-bottom: 2vh;
+    padding: 2vh;
+    font-size: 18px;
+    border-radius: 1vh;
+    border-color: var(--color-fondo);
+}
+.login-form__button{
+    font-size: 18px;
+    font-weight: 700;
+}
+.submit{
+    background-color: #FFC300;
+}
+.reset{
+    background-color: var(--color-mensaje);
+    color: #FFFFFF;
+}
+.login-form__link{
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-mensaje);
+}
+.login-form__message{
+    margin-top: 2vh;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-mensaje);
+}
+/* Transiciones y Efectos */
+.submit:hover{
+    background-color: #EFB810;
+}
+.submit:focus{
+    background-color: #B98F0E;
+}
+.reset:hover{
+    background-color: #CC1212;
+}
+.login-form__link:hover{
+    color: #000000;
+}
