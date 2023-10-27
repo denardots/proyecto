@@ -30,7 +30,7 @@
                         "codigo"=>$resultado['codigo'],
                         "ruta"=>$resultado['ruta'],
                         "nombre"=>$resultado['nombre'],
-                        "cantidad"=>1,
+                        "cantidad"=>$cantidad,
                         "precio"=>$resultado['precio']
                     );
             $_SESSION['carrito']++;
@@ -40,7 +40,7 @@
             "codigo"=>$resultado['codigo'],
             "ruta"=>$resultado['ruta'],
             "nombre"=>$resultado['nombre'],
-            "cantidad"=>1,
+            "cantidad"=>$cantidad,
             "precio"=>$resultado['precio']
         );
         $_SESSION['carrito']++;

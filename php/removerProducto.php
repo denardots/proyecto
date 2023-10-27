@@ -1,0 +1,9 @@
+<?php
+    session_start();
+    $orden=$_REQUEST['orden'];
+    $lista=$_SESSION['lista'];
+    unset($lista[$orden]);
+    $_SESSION['carrito']--;
+    $_SESSION['lista']=$lista;
+    header("location:../carrito.php");
+?>

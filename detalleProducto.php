@@ -119,23 +119,25 @@
                     <h2 class="font-weight-semi-bold mb-4"><?php echo "S/ ".number_format($productos['precio'],2,'.','');?></h2>
                     <h3 class="font-weight-semi-bold mb-4"><?php echo "Marca: ".$productos['marca'];?></h3>
                     <p class="mb-4"><?php echo $productos['descripcion'];?></p>
-                    <form class="d-flex align-items-center mb-4 pt-2" action="carrito.php" method="post" autocomplete="off">
-                        <input type="hidden" name="codigo" value="<?php echo $productos['codigo'];?>">
+                    <div class="d-flex align-items-center mb-4 pt-2" action="carrito.php" method="post" autocomplete="off">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-minus">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" name="cantidad" value="1" readonly>
+                            <input type="text" class="form-control bg-secondary border-0 text-center" name="cantidad" value="1" required readonly form="formulario">
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-plus">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
-                        <input type="submit" class="btn btn-primary px-3" value="Añadir al carrito">
-                    </form>
+                        <form action="php/comprarProducto.php" method="post" autocomplete="off" id="formulario">
+                            <input type="hidden" name="codigo" value="<?php echo $productos['codigo'];?>">
+                            <input type="submit" class="btn btn-primary px-3" value="Añadir al carrito">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
