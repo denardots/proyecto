@@ -31,8 +31,6 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
-        <div style="height: 5px;">
-        </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="index.php" class="text-decoration-none">

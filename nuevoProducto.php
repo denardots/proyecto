@@ -46,7 +46,7 @@
             </div>
             <main class="main col">
                 <div class="row justify-content-center align-content-center text-center">
-                    <div class="columna col-lg-6">
+                    <div class="columna col-lg-8">
                         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Ingresar nuevo Producto</span></h3>
                         <div class="contact-form bg-light p-30">
                             <div id="success"></div>

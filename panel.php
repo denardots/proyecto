@@ -44,7 +44,7 @@
             </div>
             <main class="main col">
                 <div class="row justify-content-center align-content-center text-center">
-                    <div class="columna col-lg-6">
+                    <div class="columna col-lg-10">
                         <h1 class="h1 position-relative text-uppercase mx-xl-5 mb-5"><span class="bg-secondary pr-3">Bienvenido Administrador</span></h1>
                         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">¿Desea cambiar sus datos?</span></h2>
                         <div class="contact-form bg-light p-30">

@@ -46,7 +46,7 @@
             </div>
             <main class="main col">
                 <div class="row justify-content-center align-content-center text-center">
-                    <div class="columna col-lg-10">
+                    <div class="columna col-lg-12">
                         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Lista de Pedidos</span></h2>
                         <div class="col-lg-12 table-responsive mb-5">
                             <table class="table table-light table-borderless table-hover text-center mb-0">

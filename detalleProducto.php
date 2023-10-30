@@ -29,8 +29,6 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
-        <div style="height: 2px;">
-        </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="index.php" class="text-decoration-none">
@@ -115,7 +113,7 @@
             </div>
             <div class="col-lg-7 h-auto">
                 <div class="h-100 bg-light p-30">
-                    <h1 class="mb-30 h1"><?php echo $productos['nombre'];?></h1>
+                    <h2 class="font-weight-semi-bold mb-30"><?php echo $productos['nombre'];?></h1>
                     <h2 class="font-weight-semi-bold mb-4"><?php echo "S/ ".number_format($productos['precio'],2,'.','');?></h2>
                     <h3 class="font-weight-semi-bold mb-4"><?php echo "Marca: ".$productos['marca'];?></h3>
                     <p class="mb-4"><?php echo $productos['descripcion'];?></p>

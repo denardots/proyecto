@@ -41,8 +41,6 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
-        <div style="height: 2px;">
-        </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="index.php" class="text-decoration-none">
@@ -120,7 +118,7 @@
     </div>
     <!-- Navbar End -->
     <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3">
+    <div class="container-fluid pt-5 pb-3" style="min-height: 58.3vh;">
 <?php
     if($encontrado){
 ?>
