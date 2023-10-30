@@ -135,9 +135,9 @@
                             <td class="align-middle"><?php echo "S/ ".number_format($valor['precio'],2,'.','');?></td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <button class="btn btn-sm btn-primary btn-minus" ><i class="fa fa-minus"></i></button>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" readonly value="<?php echo $valor['cantidad'];?>">
-                                    <button class="btn btn-sm btn-primary btn-plus"><i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-sm btn-primary btn-minus botones" ><i class="fa fa-minus"></i></button>
+                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center carrito" readonly value="<?php echo $valor['cantidad'];?>">
+                                    <button class="btn btn-sm btn-primary btn-plus botones"><i class="fa fa-plus"></i></button>
                                 </div>
                             </td>
                             <td class="align-middle"><?php echo "S/ ".number_format($subtotal,2,'.','');?></td>
@@ -155,7 +155,10 @@
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Acciones del Carrito</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="pt-2">
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" disabled>Actualizar carrito</button>
+                        <form action="php/actualizarCarrito.php" method="post">
+                            <input type="hidden" name="nuevo" id="nuevo">
+                            <input type="submit" class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="actualizar" disabled value="Actualizar Carrito">
+                        </form>
                     </div>
                 </div>
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">TOTAL DEL CARRITO</span></h5>
@@ -165,7 +168,7 @@
                             <h5>Total</h5>
                             <h5><?php echo "S/ ".number_format($total,2,'.','');?></h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="comprar" disabled>Realizar el pedido</button>
+                        <a class="btn btn-block btn-primary font-weight-bold my-3 py-3" href="pedido.php" id="comprar">Realizar el pedido</a>
                     </div>
                 </div>
             </div>
@@ -191,14 +194,17 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/carrito.js"></script>
 </body>
 <?php
     if($_SESSION['carrito']!=0){
         echo "<script>
-                const comprar=document.getElementById(`comprar`);
-                comprar.removeAttribute(`disabled`);
+                comprar.style.cursor=`pointer`;
             </script>";
-        $_SESSION['error']="";
+    }else{
+        echo "<script>
+                comprar.style.pointerEvents=`none`;
+            </script>";
     }
 ?>
 </html>

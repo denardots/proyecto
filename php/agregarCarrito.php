@@ -45,5 +45,5 @@
         $_SESSION['carrito']++;
     }
     $_SESSION['lista']=$lista;
-    header('location:../carrito.php');
+    header("location:".$_SERVER['HTTP_REFERER']);
 ?>
