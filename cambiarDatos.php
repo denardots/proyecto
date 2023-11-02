@@ -5,12 +5,11 @@
     if(!isset($_SESSION['usuario'])){
         header("location:login.php");
     }
-    require_once('php/categorias.php');
 ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGREGAR PRODUCTO</title>
+    <title>PANEL DE ADMINISTRACIÓN</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/panel.css">
@@ -38,67 +37,44 @@
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                     <a href="panel.php"><i class="fas fa-home"></i><span>Administrador</span></a>
-                    <a href="cambiarDatos.php"><i class="fas fa-user"></i><span>Cambiar Datos</span></a>
-                    <a class="active" href="nuevoProducto.php"><i class="fas fa-plus"></i><span>Agregar Producto</span></a>
+                    <a class="active" href="cambiarDatos.php"><i class="fas fa-user"></i><span>Cambiar Datos</span></a>
+                    <a href="nuevoProducto.php"><i class="fas fa-plus"></i><span>Agregar Producto</span></a>
                     <a href="inventario.php"><i class="fas fa-list"></i><span>Inventario</span></a>
                     <a href="pedidos.php"><i class="fas fa-file"></i><span>Pedidos</span></a>
                 </nav>
             </div>
             <main class="main col">
                 <div class="row justify-content-center align-content-center text-center">
-                    <div class="columna col-lg-8">
-                        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Ingresar nuevo Producto</span></h3>
+                    <div class="columna col-lg-10">
+                        <h1 class="h1 position-relative text-uppercase mx-xl-5 mb-5"><span class="bg-secondary pr-3">Bienvenido Administrador</span></h1>
+                        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">¿Desea cambiar sus datos?</span></h2>
                         <div class="contact-form bg-light p-30">
                             <div id="success"></div>
-                            <form action="php/nuevoProducto.php" method="post" autocomplete="off" enctype="multipart/form-data">
+                            <form action="php/cambiarDatos.php" method="post" autocomplete="off">
                                 <div class="control-group">
-                                    <label>Ingrese nombre del producto:</label>
-                                    <input type="text" class="form-control" name="nombre" required>
+                                    <label>Ingrese usuario actual:</label>
+                                    <input type="text" class="form-control" name="usuario" pattern="[A-Za-z0-9]{1,15}" placeholder="Solo letras y dígitos" required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <label>Ingrese marca del producto:</label>
-                                    <input type="text" class="form-control" name="marca" required>
+                                    <label>Ingrese contraseña actual:</label>
+                                    <input type="password" class="form-control" name="clave" pattern="[A-Za-z0-9]{1,15}" placeholder="Solo letras y dígitos" required>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <hr>
+                                <div class="control-group">
+                                    <label>Ingrese nuevo usuario:</label>
+                                    <input type="text" class="form-control" name="nuevoUsuario" pattern="[A-Za-z0-9]{1,15}" placeholder="Solo letras y dígitos" required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <label>Seleccione categoría:</label>
-                                    <select class="custom-select" name="categoria">
-                                <?php
-                                    while($fila=$categorias->fetch(PDO::FETCH_ASSOC)){
-                                ?>
-                                        <option value="<?php echo $fila['id'];?>">
-                                            <?php echo $fila['categoria']; ?>
-                                        </option>
-                                <?php
-                                    }
-                                ?>
-                                    </select>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <label>Ingrese stock del producto:</label>
-                                    <input type="number" class="form-control" name="stock" min="1" pattern="^[0-9]+" required>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <label>Ingrese precio del producto: S/</label>
-                                    <input type="number" class="form-control" name="precio" step="0.01" required>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <label>Ingrese descripción del producto:</label>
-                                    <textarea class="form-control" rows="3" name="descripcion" required></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <label>Elija imagen del producto:</label>
-                                    <input type="file" class="form-control" accept="image/*" name="imagen" required>
+                                    <label>Ingrese nueva contraseña:</label>
+                                    <input type="password" class="form-control" name="nuevoClave" pattern="[A-Za-z0-9]{1,15}" placeholder="Solo letras y dígitos" required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div>
                                     <h4 class="help-block text-danger" id="mensaje"></h2>
-                                    <input type="submit" class="btn btn-primary py-2 px-4" value="AGREGAR PRODUCTO">
+                                    <input type="submit" class="btn btn-primary py-2 px-4" value="CAMBIAR DATOS">
                                     <input type="reset" class="btn btn-danger py-2 px-4" value="LIMPIAR DATOS" id="limpiar">
                                 </div>
                             </form>
@@ -111,11 +87,10 @@
     <?php
         if(isset($_SESSION['error'])){
             if($_SESSION['error']=="ERROR"){
-                echo $_SESSION['error'];
                 echo "<script>
                         const mensaje=document.getElementById(`mensaje`);
                         const limpiar=document.getElementById(`limpiar`);
-                        mensaje.textContent=`¡EL PRODUCTO YA EXISTE!`;
+                        mensaje.textContent=`¡DATOS INCORRECTOS!`;
                         limpiar.addEventListener(`click`,()=>mensaje.textContent=``);
                     </script>";
                 $_SESSION['error']="";

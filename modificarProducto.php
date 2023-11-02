@@ -41,6 +41,7 @@
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                     <a href="panel.php"><i class="fas fa-home"></i><span>Administrador</span></a>
+                    <a href="cambiarDatos.php"><i class="fas fa-user"></i><span>Cambiar Datos</span></a>
                     <a href="nuevoProducto.php"><i class="fas fa-plus"></i><span>Agregar Producto</span></a>
                     <a class="active" href="inventario.php"><i class="fas fa-list"></i><span>Inventario</span></a>
                     <a href="pedidos.php"><i class="fas fa-file"></i><span>Pedidos</span></a>

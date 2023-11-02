@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2023 a las 05:02:13
+-- Tiempo de generación: 02-11-2023 a las 01:53:44
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -69,20 +69,20 @@ CREATE TABLE `pedidos` (
   `codigo` varchar(6) NOT NULL,
   `cliente` varchar(100) NOT NULL,
   `dni` varchar(8) NOT NULL,
-  `correo` varchar(50) NOT NULL,
   `telefono` varchar(9) NOT NULL,
   `fecha` date NOT NULL DEFAULT current_timestamp(),
   `cantidad` int(3) NOT NULL,
   `total` float(10,2) NOT NULL,
-  `detalles` longtext NOT NULL
+  `detalles` longtext NOT NULL,
+  `estado` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`codigo`, `cliente`, `dni`, `correo`, `telefono`, `fecha`, `cantidad`, `total`, `detalles`) VALUES
-('401965', 'Denardo Edgard Taco Sánchez', '70948049', 'denardo110901@gmail.com', '914314466', '2023-10-29', 8, 187.10, '{\"215428\":[\"Foco Led 12W\",\"5\",9.5],\"267990\":[\"Varilla de Fierro 4.7mm\",\" 1\",8.6],\"504932\":[\"Duralatex 4L Ambar\",\" 2\",65.5]}');
+INSERT INTO `pedidos` (`codigo`, `cliente`, `dni`, `telefono`, `fecha`, `cantidad`, `total`, `detalles`, `estado`) VALUES
+('593330', 'Denardo Edgard Taco Sánchez', '70948049', '914314466', '2023-11-01', 1, 9.50, '{\"215428\":[\"Foco Led 12W\",1,9.5]}', 'Entregado');
 
 -- --------------------------------------------------------
 
@@ -106,23 +106,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`codigo`, `nombre`, `marca`, `fkCategoria`, `stock`, `precio`, `descripcion`, `ruta`) VALUES
-('215428', 'Foco Led 12W', 'Alfa', 1, 55, 9.50, 'Foco led de 12w.', 'img/LED-spotlight-12.webp'),
-('267990', 'Varilla de Fierro 4.7mm', 'Aceros Arequipa', 2, 7, 8.60, 'Varillas de acero o fierros de construcción corrugados con diámetro de 4.7 mm y 8.8 metros de largo, peso 1.162 kg, norma ASTM a496 grado 60.                                                                        ', 'img/iron-rod-47.webp'),
-('504932', 'Duralatex 4L Ambar', 'CPP', 3, 14, 65.50, 'Pintura látex de 4 lt con acabado mate, a base de resina vinil-acrílica que otorga buena resistencia y poder cubriente, color ámbar, uso ideal para interiores y exteriores,', 'img/duralatex-ambar.webp');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventas`
---
-
-CREATE TABLE `ventas` (
-  `codigo` varchar(6) NOT NULL,
-  `cliente` varchar(50) NOT NULL,
-  `cantidad` int(5) NOT NULL,
-  `total` float(10,2) NOT NULL,
-  `detalles` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+('215428', 'Foco Led 12W', 'Alfa', 1, 60, 9.50, 'Foco led de 12w.                                    ', 'img/LED-spotlight-12.webp'),
+('267990', 'Varilla de Fierro 4.7mm', 'Aceros Arequipa', 2, 20, 8.60, 'Varillas de acero o fierros de construcción corrugados con diámetro de 4.7 mm y 8.8 metros de largo, peso 1.162 kg, norma ASTM a496 grado 60.                                                                                                            ', 'img/iron-rod-47.webp'),
+('504932', 'Duralatex 4L Ambar', 'CPP', 3, 22, 65.50, 'Pintura látex de 4 lt con acabado mate, a base de resina vinil-acrílica que otorga buena resistencia y poder cubriente, color ámbar, uso ideal para interiores y exteriores,                                    ', 'img/duralatex-ambar.webp');
 
 --
 -- Índices para tablas volcadas
@@ -146,12 +132,6 @@ ALTER TABLE `pedidos`
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`codigo`),
   ADD KEY `fk_idCategoria` (`fkCategoria`);
-
---
--- Indices de la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`codigo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas

@@ -33,12 +33,12 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                     <a href="panel.php"><i class="fas fa-home"></i><span>Administrador</span></a>
+                    <a href="cambiarDatos.php"><i class="fas fa-user"></i><span>Cambiar Datos</span></a>
                     <a href="nuevoProducto.php"><i class="fas fa-plus"></i><span>Agregar Producto</span></a>
                     <a href="inventario.php"><i class="fas fa-list"></i><span>Inventario</span></a>
                     <a class="active" href="pedidos.php"><i class="fas fa-file"></i><span>Pedidos</span></a>
@@ -58,28 +58,38 @@
                                         <th>Categoria</th>
                                         <th>Precio</th>
                                         <th>Stock</th>
+                                        <th>Estado</th>
                                         <th>Detalles</th>
                                     </tr>
                                 </thead>
                                 <tbody class="align-middle">
-                            <?php
+                        <?php
+                            if($pedidos){
                                 while($fila=$pedidos->fetch(PDO::FETCH_ASSOC)){
                                     $fecha=date("d/m/Y",strtotime($fila['fecha']));
-                            ?>
+                        ?>
                                     <tr>
                                         <td class="align-middle"><?php echo $fila['codigo'];?></td>
                                         <td class="align-middle"><?php echo $fila['cliente'];?></td>
                                         <td class="align-middle"><?php echo $fila['dni'];?></td>
                                         <td class="align-middle"><?php echo $fecha;?></td>
                                         <td class="align-middle"><?php echo $fila['cantidad'];?></td>
+                                        <td class="align-middle"><?php echo $fila['estado'];?></td>
                                         <td class="align-middle"><?php echo "S/ ".number_format($fila['total'],2,'.','');?></td>
                                         <td class="align-middle">
                                             <a class="btn btn-sm btn-primary" href="detallesPedido.php?codigo=<?php echo $fila['codigo'];?>"><i class="fa fa-search"></i></button>
                                         </td>
                                     </tr>
-                            <?php
+                        <?php
                                 }
-                            ?>
+                            }else{
+                        ?>
+                                    <tr>
+                                        <td class="align-middle">No hay pedidos pendientes</td>
+                                    </tr>
+                        <?php
+                            }
+                        ?>
                                 </tbody>
                             </table>
                         </div>

@@ -3,7 +3,7 @@
     class Pedido extends Inventario{
         public function mostrarPedido($conexion,$codigo){
             $conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $consulta=$conexion->prepare("SELECT codigo,cliente,dni,fecha,total,detalles FROM pedidos WHERE codigo=:codigo");
+            $consulta=$conexion->prepare("SELECT codigo,cliente,dni,fecha,total,detalles,estado FROM pedidos WHERE codigo=:codigo");
             $consulta->bindParam(":codigo",$codigo);
             $consulta->execute();
             $resultado=$consulta->fetch(PDO::FETCH_ASSOC);

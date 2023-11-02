@@ -33,28 +33,28 @@
             $consulta->bindParam(":stock",$stock);
             $consulta->execute();
         }
-        public function nuevoPedido($conexion,$codigo,$cliente,$dni,$correo,$telefono,$fecha,$cantidad,$total,$objeto){
+        public function nuevoPedido($conexion,$codigo,$cliente,$dni,$telefono,$fecha,$cantidad,$total,$objeto,$estado){
             $conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $consulta=$conexion->prepare("INSERT INTO pedidos VALUES(
                 :codigo,
                 :cliente,
                 :dni,
-                :correo,
                 :telefono,
                 :fecha,
                 :cantidad,
                 :total,
-                :objeto
+                :objeto,
+                :estado
             )");
             $consulta->bindParam(":codigo",$codigo);
             $consulta->bindParam(":cliente",$cliente);
             $consulta->bindParam(":dni",$dni);
-            $consulta->bindParam(":correo",$correo);
             $consulta->bindParam(":telefono",$telefono);
             $consulta->bindParam(":fecha",$fecha);
             $consulta->bindParam(":cantidad",$cantidad);
             $consulta->bindParam(":total",$total);
             $consulta->bindParam(":objeto",$objeto);
+            $consulta->bindParam(":estado",$estado);
             $consulta->execute();
         }
     }
@@ -65,7 +65,6 @@
     $apellido=$_POST['apellido'];
     $cliente=$nombre." ".$apellido;
     $dni=$_POST['dni'];
-    $correo=$_POST['correo'];
     $telefono=$_POST['telefono'];
     date_default_timezone_set('America/Mexico_City');
 	$fecha=date("Y-m-d");
@@ -83,8 +82,9 @@
         $pedido->actualizarStock($conexion,$valor['codigo'],$stock);
     }
     $objeto=json_encode($detalles);
+    $estado="Sin entrega";
     $pedido->actualizarStock($conexion,$valor['codigo'],$stock);
-    $pedido->nuevoPedido($conexion,$codigo,$cliente,$dni,$correo,$telefono,$fecha,$cantidad,$total,$objeto);
+    $pedido->nuevoPedido($conexion,$codigo,$cliente,$dni,$telefono,$fecha,$cantidad,$total,$objeto,$estado);
     unset($_SESSION['lista']);
     $_SESSION['carrito']=0;
     header("location:../index.php");

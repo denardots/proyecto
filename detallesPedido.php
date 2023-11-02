@@ -38,12 +38,12 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                     <a href="panel.php"><i class="fas fa-home"></i><span>Administrador</span></a>
+                    <a href="cambiarDatos.php"><i class="fas fa-user"></i><span>Cambiar Datos</span></a>
                     <a href="nuevoProducto.php"><i class="fas fa-plus"></i><span>Agregar Producto</span></a>
                     <a href="inventario.php"><i class="fas fa-list"></i><span>Inventario</span></a>
                     <a class="active" href="pedidos.php"><i class="fas fa-file"></i><span>Pedidos</span></a>
@@ -56,17 +56,21 @@
                         <div class="col-lg-12 mb-5">
                             <div class="contact-form bg-light p-30">
                                 <div class="row">
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-3 form-group">
                                         <label>Cliente:</label>
                                         <input class="form-control" type="text" value="<?php echo $datos['cliente'];?>" readonly>
                                     </div>
-                                    <div class="col-md-4 form-group">
+                                    <div class="col-md-3 form-group">
                                         <label>DNI:</label>
                                         <input class="form-control" type="text" value="<?php echo $datos['dni'];?>" readonly>
                                     </div>
-                                    <div class="col-md-4 form-group">
-                                        <label>Fecha de Pedido</label>
+                                    <div class="col-md-3 form-group">
+                                        <label>Fecha del Pedido</label>
                                         <input class="form-control" type="text" value="<?php echo $fecha;?>" readonly>
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <label>Estado del Pedido</label>
+                                        <input class="form-control" type="text" value="<?php echo $datos['estado'];?>" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +89,7 @@
                                 </thead>
                                 <tbody class="align-middle">
                             <?php
-                                foreach ($detalles as $codigos=>$valor) {
+                                foreach ($detalles as $codigos=>$valor){
                                     $subtotal=$valor[1]*$valor[2];
                             ?>
                                     <tr>
@@ -97,20 +101,30 @@
                                     </tr>
                             <?php
                                 }
+                                if($datos['estado']=="Sin entrega"){
                             ?>
                                     <tr>
                                         <td class="align-middle">
-                                            <a href="php/descargarPedido.php?codigo=<?php echo $codigo;?>" class="btn btn-primary py-2 px-4">DESCARGAR EN PDF</a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="php/entregarPedido.php?codigo=<?php echo $codigo;?>" class="btn btn-primary py-2 px-4">PEDIDO ENTREGADO</a>
+                                            <a href="php/entregarPedido.php?codigo=<?php echo $codigo;?>" class="btn btn-primary py-2 px-4">ENTREGAR PEDIDO</a>
                                         </td>
                                         <td class="align-middle">
                                             <a href="php/eliminarPedido.php?codigo=<?php echo $codigo;?>" class="btn btn-danger py-2 px-4">ELIMINAR PEDIDO</a>
                                         </td>
+                                        <td></td>
                                         <td class="align-middle bg-dark text-light">TOTAL</td>
                                         <td class="align-middle bg-dark text-light"><?php echo "S/ ".number_format($datos['total'],2,'.','');?></td>
                                     </tr>
+                            <?php
+                                }else{
+                            ?>
+                                    <tr>
+                                        <td colspan="3"></td>
+                                        <td class="align-middle bg-dark text-light">TOTAL</td>
+                                        <td class="align-middle bg-dark text-light"><?php echo "S/ ".number_format($datos['total'],2,'.','');?></td>
+                                    </tr>
+                            <?php
+                                }
+                            ?>
                                 </tbody>
                             </table>
                         </div>

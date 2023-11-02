@@ -123,10 +123,6 @@
                             <input class="form-control" type="text" name="dni" minlength="8" maxlength="8" pattern="^[0-9]+" required>
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Ingrese su Gmail:</label>
-                            <input class="form-control" type="email" name="correo" required>
-                        </div>
-                        <div class="col-md-6 form-group">
                             <label>Ingrese su Teléfono:</label>
                             <input class="form-control" type="text" name="telefono" minlength="9" maxlength="9" pattern="^[0-9]+" required>
                         </div>
@@ -166,7 +162,7 @@
     </div>
     <!-- Checkout End -->
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5">
+    <div class="container-fluid bg-dark text-secondary mt-5" style="position:absolute; bottom:0;">
         <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-secondary">

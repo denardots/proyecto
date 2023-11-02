@@ -6,6 +6,16 @@
         header("location:login.php");
     }
     require_once('php/inventario.php');
+    if(isset($_POST['busqueda'])){
+        $nombre=$_POST['busqueda'];
+        $busqueda=$producto->mostrarProductoNombre($conexion,$nombre);
+        $encontrado=$busqueda->fetch(PDO::FETCH_ASSOC);
+        $productos=$producto->mostrarProductoNombre($conexion,$nombre);
+    }else{
+        $encontrado=TRUE;
+        $productos=$producto->mostrarProducto($conexion);
+    }
+    $producto->cerrarConexion($conexion);
 ?>
 <head>
     <meta charset="UTF-8">
@@ -33,12 +43,12 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
                     <a href="panel.php"><i class="fas fa-home"></i><span>Administrador</span></a>
+                    <a href="cambiarDatos.php"><i class="fas fa-user"></i><span>Cambiar Datos</span></a>
                     <a href="nuevoProducto.php"><i class="fas fa-plus"></i><span>Agregar Producto</span></a>
                     <a class="active" href="inventario.php"><i class="fas fa-list"></i><span>Inventario</span></a>
                     <a href="pedidos.php"><i class="fas fa-file"></i><span>Pedidos</span></a>
@@ -48,6 +58,14 @@
                 <div class="row justify-content-center align-content-center text-center">
                     <div class="columna col-lg-12">
                         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Inventario de Productos</span></h2>
+                        <form class="contact-form bg-light p-30" action="inventario.php" method="post" autocomplete="off">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="busqueda" placeholder="Buscar productos">
+                                <div class="input-group-append">
+                                    <input type="submit" class="form-control bg-primary text-dark" value="BUSCAR">
+                                </div>
+                            </div>
+                        </form>
                         <div class="col-lg-12 table-responsive mb-5">
                             <table class="table table-light table-borderless table-hover text-center mb-0">
                                 <thead class="thead-dark">
@@ -61,9 +79,10 @@
                                     </tr>
                                 </thead>
                                 <tbody class="align-middle">
-                            <?php
+                        <?php
+                            if($encontrado){
                                 while($fila=$productos->fetch(PDO::FETCH_ASSOC)){
-                            ?>
+                        ?>
                                     <tr>
                                         <td class="align-middle"><?php echo $fila['nombre'];?></td>
                                         <td class="align-middle"><?php echo $fila['marca'];?></td>
@@ -77,9 +96,16 @@
                                             <button class="btn btn-sm btn-danger botones" name="<?php echo $fila['codigo'];?>" value="<?php echo $fila['nombre'];?>"><i class="fa fa-times"></i></button>
                                         </td>
                                     </tr>
-                            <?php
+                        <?php
                                 }
-                            ?>
+                            }else{
+                        ?>
+                                    <tr>
+                                        <td colspan="7" class="align-middle">No se encontró el producto buscado</td>
+                                    </tr>
+                        <?php
+                            }
+                        ?>
                                 </tbody>
                             </table>
                         </div>
