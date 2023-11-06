@@ -87,5 +87,5 @@
     $pedido->nuevoPedido($conexion,$codigo,$cliente,$dni,$telefono,$fecha,$cantidad,$total,$objeto,$estado);
     unset($_SESSION['lista']);
     $_SESSION['carrito']=0;
-    header("location:../index.php");
+    header("location:../pago.php");
 ?>

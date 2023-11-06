@@ -5,14 +5,11 @@
     if(!isset($_SESSION['carrito'])){
         $_SESSION['carrito']=0;
     }
-    if($_SESSION['carrito']==0){
-        header("location:index.php");
-    }
     require_once('php/categorias.php');
 ?>
 <head>
     <meta charset="utf-8">
-    <title>PEDIDO</title>
+    <title>MÉTODOS DE PAGO</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -28,8 +25,6 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
-        <div style="height: 2px;">
-        </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="index.php" class="text-decoration-none">
@@ -54,7 +49,6 @@
         </div>
     </div>
     <!-- Topbar End -->
-    <!-- Navbar Start -->
     <div class="container-fluid bg-dark mb-2">
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
@@ -106,64 +100,21 @@
         </div>
     </div>
     <!-- Navbar End -->
-    <!-- Checkout Start -->
-    <div class="container-fluid pt-5 pb-3">
+    <!-- Products Start -->
+    <div class="container-fluid pt-5 pb-3" style="min-height: 58.3vh;">
+
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">MÉTODOS DE PAGO</span></h2>
+
         <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Datos del Cliente</span></h5>
-                <form class="bg-light p-30 mb-5" action="php/realizarPedido.php" method="post" id="formulario" autocomplete="off">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>Ingrese su Nombre:</label>
-                            <input class="form-control" type="text" name="nombre" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]{5,50}" required>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Ingrese sus Apellidos:</label>
-                            <input class="form-control" type="text" name="apellido" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]{5,50}" required>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Ingrese su DNI</label>
-                            <input class="form-control" type="text" name="dni" minlength="8" maxlength="8" pattern="^[0-9]+" required>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Ingrese su Teléfono:</label>
-                            <input class="form-control" type="text" name="telefono" minlength="9" maxlength="9" pattern="^[0-9]+" required>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-4">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Orden de Productos</span></h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="border-bottom">
-                        <h6 class="mb-3">Productos</h6>
-                <?php
-                    $total=0;
-                    $lista=$_SESSION['lista'];
-                    foreach ($lista as $orden=>$valor){
-                        $subtotal=$valor['precio']*$valor['cantidad'];
-                ?>
-                        <div class="d-flex justify-content-between">
-                            <p><?php echo $valor['nombre'];?></p>
-                            <p><?php echo "S/ ".number_format($subtotal,2,'.','');?></p>
-                        </div>
-                <?php
-                        $total=$total+$subtotal;
-                    }
-                ?>
-                    </div>
-                    <div class="pt-2">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5>Total</h5>
-                            <h5><?php echo "S/ ".number_format($total,2,'.','');?></h5>
-                        </div>
-                    </div>
-                    <input type="submit" class="btn btn-block btn-primary font-weight-bold py-3" value="Realizar Pedido" form="formulario">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <div class="product-item bg-light mb-4">
+                    
                 </div>
             </div>
+
         </div>
     </div>
-    <!-- Checkout End -->
+    <!-- Products End -->
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5" style="position:absolute; bottom:0;">
         <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
@@ -176,6 +127,9 @@
         </div>
     </div>
     <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

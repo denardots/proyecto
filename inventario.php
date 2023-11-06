@@ -60,7 +60,7 @@
                         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Inventario de Productos</span></h2>
                         <form class="contact-form bg-light p-30" action="inventario.php" method="post" autocomplete="off">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="busqueda" placeholder="Buscar productos">
+                                <input type="text" class="form-control" name="busqueda" placeholder="Buscar productos por su nombre" required>
                                 <div class="input-group-append">
                                     <input type="submit" class="form-control bg-primary text-dark" value="BUSCAR">
                                 </div>

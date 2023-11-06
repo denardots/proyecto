@@ -9,7 +9,7 @@
         }
         public function mostrarProductoNombre($conexion,$nombre){
             $conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $consulta=$conexion->prepare("SELECT * FROM productos INNER JOIN categorias ON productos.fkCategoria = categorias.id WHERE nombre LIKE CONCAT('%',:nombre,'%') AND stock>0");
+            $consulta=$conexion->prepare("SELECT * FROM productos INNER JOIN categorias ON productos.fkCategoria = categorias.id WHERE nombre LIKE CONCAT('%',:nombre,'%')");
             $consulta->bindParam(":nombre",$nombre);
             $consulta->execute();
             return $consulta;
@@ -17,5 +17,4 @@
     }
     $producto=new Producto;
     $conexion=$producto->crearConexion();
-
 ?>
